@@ -69,4 +69,13 @@ public class EndangeredAnimalTest {
     assertEquals("Sick", testEndangeredAnimal.getHealth());
     assertEquals("Old", testEndangeredAnimal.getAge());
   }
+
+  @Test
+  public void find_FindsAnimalInstanceRelatedToId_true() {
+    EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
+    firstEndangeredAnimal.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
+    secondEndangeredAnimal.save();
+    assertEquals(secondEndangeredAnimal, EndangeredAnimal.find(secondEndangeredAnimal.getId()));
+  }
 }
