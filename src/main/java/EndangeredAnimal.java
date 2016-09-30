@@ -23,4 +23,7 @@ public class EndangeredAnimal extends Animal {
     return this.health;
   }
 
+  public String getAge() {
+    return this.age;
+  }
 }
