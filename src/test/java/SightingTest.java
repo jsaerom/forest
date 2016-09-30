@@ -72,4 +72,15 @@ public class SightingTest {
     secondSighting.save();
     assertEquals(secondSighting, Sighting.find(secondSighting.getId()));
   }
+
+  @Test
+  public void detele_deleteFromJoinTable_true() {
+    Animal testAnimal = new Animal("squirrel");
+    testAnimal.save();
+    Sighting testSighting = new Sighting("Zone A", 1);
+    testSighting.save();
+    testAnimal.addSighting(testSighting);
+    testSighting.delete();
+    assertEquals(0, testAnimal.getSightings().size());
+  }
 }

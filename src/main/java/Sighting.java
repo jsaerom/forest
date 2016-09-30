@@ -99,6 +99,11 @@ public class Sighting {
       con.createQuery(sql)
         .addParameter("id", this.id)
         .executeUpdate();
+
+      String joinDeleteQuery = "DELETE FROM animals_sightings WHERE sighting_id = :sightingid;";
+      con.createQuery(joinDeleteQuery)
+        .addParameter("sightingid", this.getId())
+        .executeUpdate();
     }
   }
 }
