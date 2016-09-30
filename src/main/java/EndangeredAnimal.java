@@ -47,4 +47,17 @@ public class EndangeredAnimal extends Animal {
              this.getId() == newEndangeredAnimal.getId();
     }
   }
+
+  @Override
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO animals (name, health, age) VALUES (:name, :health, :age);";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
+        .addParameter("health", this.health)
+        .addParameter("age", this.age)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }
