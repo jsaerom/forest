@@ -76,6 +76,40 @@ public class Animal {
       con.createQuery(sql)
         .addParameter("id", this.id)
         .executeUpdate();
+      String joinDeleteQuery = "DELETE FROM animals_sightings WHERE animal_id = :animalid;";
+      con.createQuery(joinDeleteQuery)
+        .addParameter("animalid", this.getId())
+        .executeUpdate();
+    }
+  }
+
+  public void addSighting(Sighting sighting) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO animals_sightings (sighting_id, animal_id) VALUES (:sighting_id, :animal_id);";
+      con.createQuery(sql)
+        .addParameter("sighting_id", sighting.getId())
+        .addParameter("animal_id", this.id)
+        .executeUpdate();
+    }
+  }
+
+  public List<Sighting> getSightings() {
+    try(Connection con = DB.sql2o.open()) {
+      String joinQuery = "SELECT sighting_id FROM animals_sightings WHERE animal_id = :animal_id;";
+      List<Integer> sightingIds = con.createQuery(joinQuery)
+        .addParameter("animal_id", this.getId())
+        .executeAndFetch(Integer.class);
+
+      List<Sighting> sightings = new ArrayList<Sighting>();
+
+      for (Integer sightingId : sightingIds) {
+        String sightingQuery = "SELECT * FROM sightings WHERE id = :sightingId;";
+        Sighting sighting = con.createQuery(sightingQuery)
+          .addParameter("sightingId", sightingId)
+          .executeAndFetchFirst(Sighting.class);
+        sightings.add(sighting);
+      }
+      return sightings;
     }
   }
 
