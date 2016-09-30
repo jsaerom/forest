@@ -69,4 +69,17 @@ public class EndangeredAnimal extends Animal {
       return con.createQuery(sql).executeAndFetch(EndangeredAnimal.class);
     }
   }
+
+  @Override
+  public void update() {
+    try(Connection con = DB.sql2o.open()){
+    String sql = "UPDATE animals SET (name, health, age) = (:name, :health, :age) WHERE id = :id;";
+    con.createQuery(sql)
+      .addParameter("name", this.name)
+      .addParameter("health", this.health)
+      .addParameter("age", this.age)
+      .addParameter("id", this.id)
+      .executeUpdate();
+    }
+  }
 }
