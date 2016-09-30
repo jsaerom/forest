@@ -29,7 +29,7 @@ public class EndangeredAnimal extends Animal {
     return this.age;
   }
 
-  public String getEndangered() {
+  public boolean getEndangered() {
     return this.endangered;
   }
 

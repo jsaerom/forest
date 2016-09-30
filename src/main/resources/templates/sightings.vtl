@@ -1,0 +1,11 @@
+<h2>View Sightings</h2>
+#if (!($sightings.isEmpty()))
+  <p><a href="/sightings/new">Add new sighting</a></p>
+  #foreach ($sighting in $sightings)
+  <ul>
+    <li><a href="">$animal.getName() seen at $sighting.getLocation() on $sighting.getDate()</a></li>
+  </ul>
+  #end
+#else
+  <p>There are currently 0 sightings. <a href="/sightings/new">Add a sighting</a></p>
+#end
