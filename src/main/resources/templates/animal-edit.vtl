@@ -1,20 +1,20 @@
-<form action="" method="">
+<form action="/animals/$animal.getId()/edit" method="post">
   <input id="animalId" name="animalId" type="hidden" value="$animal.getId()">
   <div class="form-group">
-    <label for="name"></label>
+    <label for="name">Animal Name:</label>
     <input type="text" name="name" id="name" value="$animal.getName()">
   </div>
 
-  <div class="form-group">
-    <label for ="endangered"></label>
+  <!-- <div class="form-group">
+    <label for ="endangered">Is the animal an endangered species?</label>
     <select id="endangered" name="endangered">
       <option>True</option>
       <option>False</option>
     </select>
-  </div>
+  </div> -->
 
   <div class="form-group">
-    <label for ="health"></label>
+    <label for ="health">If they're endangered, what is their health like? You may ignore this question if the animal is not an endangered species.</label>
     <select id="health" name="health">
       <option>Healthy</option>
       <option>Healthy with minor issues</option>
@@ -23,7 +23,7 @@
   </div>
 
   <div class="form-group">
-    <label for ="age"></label>
+    <label for ="age">If they're endangered, what is their estimated age? You may ignore this question if the animal is not an endangered species.</label>
     <select id="age" name="age">
       <option>Baby</option>
       <option>Youth</option>

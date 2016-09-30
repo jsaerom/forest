@@ -1,5 +1,5 @@
 <h2>$animal.getName()</h2>
-#if ($animal.getEndangered() == true)
+#if ($animal.getEndangered())
   <p><strong>This animal is an endangered species.</strong></p>
   <p>$animal.getHealth()</p>
   <p>$animal.getAge()</p>
@@ -14,4 +14,4 @@
 #else
   <p>There have been no sightings of this animal</p>
 #end
-<p><a href="">Edit</a>|<a href="">Delete</a></p>
+<p><a href="/animals/$animal.getId()/edit">Edit</a>|<a href="/animals/$animal.getId()/delete">Delete</a></p>

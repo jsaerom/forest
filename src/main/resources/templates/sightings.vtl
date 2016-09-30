@@ -3,7 +3,7 @@
   <p><a href="/sightings/new">Add new sighting</a></p>
   #foreach ($sighting in $sightings)
   <ul>
-    <li><a href="">$animal.getName() seen at $sighting.getLocation() on $sighting.getDate()</a></li>
+    <li><a href="/sightings/$sighting.getId()">$sighting.getLocation() on $sighting.getDate()</a></li>
   </ul>
   #end
 #else

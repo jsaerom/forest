@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class EndangeredAnimal extends Animal {
   private String health;
   private String age;
-  private boolean endangered;
 
   public static final String HEALTH_HEALTHY = "Healthy";
   public static final String HEALTH_MINOR_ILL = "Healthy with minor issues";
@@ -27,10 +26,6 @@ public class EndangeredAnimal extends Animal {
 
   public String getAge() {
     return this.age;
-  }
-
-  public boolean getEndangered() {
-    return this.endangered;
   }
 
   public void setHealth(String _health) {

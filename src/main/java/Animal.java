@@ -5,13 +5,19 @@ import java.util.ArrayList;
 public class Animal {
   public String name;
   public int id;
+  public boolean endangered;
 
   public Animal(String _name) {
     this.name = _name;
+    this.endangered = false;
   }
 
   public String getName(){
     return this.name;
+  }
+
+  public boolean getEndangered() {
+    return this.endangered;
   }
 
   public int getId() {
@@ -44,7 +50,7 @@ public class Animal {
   }
 
   public static List<Animal> all() {
-    String sql = "SELECT name, id FROM animals;";
+    String sql = "SELECT name, id, endangered FROM animals;";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Animal.class);
     }

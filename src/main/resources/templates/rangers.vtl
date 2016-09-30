@@ -3,7 +3,7 @@
   <p><a href="/rangers/new">Add new ranger</a></p>
   #foreach ($ranger in $rangers)
   <ul>
-    <li><a href="">$ranger.getName()</a></li>
+    <li><a href="/rangers/$ranger.getId()">$ranger.getName()</a></li>
   </ul>
   #end
 #else

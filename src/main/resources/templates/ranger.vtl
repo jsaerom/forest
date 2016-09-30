@@ -1,12 +1,4 @@
-<h2>View Rangers</h2>
-#if (!($rangers.isEmpty()))
-  <p><a href="">Add new ranger</a></p>
-  #foreach ($ranger in $rangers)
-  <ul>
-    <li><a href="">$ranger.getName()</a></li>
-  </ul>
-  #end
-#else
-  <p>There are currently 0 ranger. <a href="">Add a ranger</a></p>
-#end
-<p><a href="">Edit</a>|<a href="">Delete</a></p>
+<h2>$ranger.getName()</h2>
+<p>$ranger.getRangerNumber()</p>
+<p>$ranger.getEmail()</p>
+<p><a href="/rangers/$ranger.getId()/edit">Edit</a>|<a href="/rangers/$ranger.getId()/delete">Delete</a></p>
