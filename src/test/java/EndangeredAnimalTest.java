@@ -44,6 +44,16 @@ public class EndangeredAnimalTest {
   public void save_insertsObjectIntoDatabase_EndangeredAnimal() {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
     testEndangeredAnimal.save();
-    assertTrue(EndangeredAnimal.all().get(0).equals(testEndangeredAnimal));
+    assertTrue(EndangeredAnimal.allEndangeredAnimals().get(0).equals(testEndangeredAnimal));
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfEndangeredAnimal_true() {
+    EndangeredAnimal firstEndangeredAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
+    firstEndangeredAnimal.save();
+    EndangeredAnimal secondEndangeredAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
+    secondEndangeredAnimal.save();
+    assertEquals(true, EndangeredAnimal.allEndangeredAnimals().get(0).equals(firstEndangeredAnimal));
+    assertEquals(true, EndangeredAnimal.allEndangeredAnimals().get(1).equals(secondEndangeredAnimal));
   }
 }
