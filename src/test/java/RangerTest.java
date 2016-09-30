@@ -32,4 +32,29 @@ public class RangerTest {
     Ranger testRanger = new Ranger("John", "1234", "john@ranger.com");
     assertEquals("john@ranger.com", testRanger.getEmail());
   }
+
+  @Test
+  public void equals_returnsTrueIfRangerIsSame_true() {
+    Ranger firstRanger = new Ranger("John", "1234", "john@ranger.com");
+    Ranger secondRanger = new Ranger("John", "1234", "john@ranger.com");
+    assertTrue(firstRanger.equals(secondRanger));
+  }
+
+  @Test
+  public void save_insertsObjectIntoDatabase_Ranger() {
+    Ranger testRanger = new Ranger("John", "1234", "john@ranger.com");
+    testRanger.save();
+    assertTrue(Ranger.all().get(0).equals(testRanger));
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfRanger_true() {
+    Ranger firstRanger = new Ranger("John", "1234", "john@ranger.com");
+    firstRanger.save();
+    Ranger secondRanger = new Ranger("John", "1234", "john@ranger.com");
+    secondRanger.save();
+    assertEquals(true, Ranger.all().get(0).equals(firstRanger));
+    assertEquals(true, Ranger.all().get(1).equals(secondRanger));
+  }
+
 }
