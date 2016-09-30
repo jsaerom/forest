@@ -6,13 +6,15 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Sighting {
-  public String location;
-  public Timestamp date;
-  public int id;
+  private String location;
+  private Timestamp date;
+  private int id;
+  private int rangerId;
 
-  public Sighting(String _location) {
+  public Sighting(String _location, int _rangerId) {
     this.location = _location;
     this.date = new Timestamp(new Date().getTime());
+    this.rangerId = _rangerId;
   }
 
   public String getLocation() {
@@ -23,12 +25,20 @@ public class Sighting {
     return this.date;
   }
 
+  public int getRangerId() {
+    return this.rangerId;
+  }
+
   public int getId() {
     return this.id;
   }
 
   public void setLocation(String _location) {
     this.location = _location;
+  }
+
+  public void setRangerId(int _rangerId) {
+    this.rangerId = _rangerId;
   }
 
   @Override
@@ -39,15 +49,17 @@ public class Sighting {
       Sighting newSighting = (Sighting) otherSighting;
       return this.getLocation().equals(newSighting.getLocation()) &&
              this.getDate().getDay() == newSighting.getDate().getDay() &&
+             this.getRangerId() == newSighting.getRangerId() &&
              this.getId() == newSighting.getId();
     }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (location, date) VALUES (:location, now());";
+      String sql = "INSERT INTO sightings (location, date, rangerid) VALUES (:location, now(), :rangerid);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("location", this.location)
+        .addParameter("rangerid", this.rangerId)
         .executeUpdate()
         .getKey();
     }
@@ -62,10 +74,11 @@ public class Sighting {
 
   public void update() {
     try(Connection con = DB.sql2o.open()){
-    String sql = "UPDATE sightings SET (location) = (:location) WHERE id = :id;";
+    String sql = "UPDATE sightings SET (location, rangerid) = (:location, :rangerid) WHERE id = :id;";
     con.createQuery(sql)
       .addParameter("location", this.location)
       .addParameter("id", this.id)
+      .addParameter("rangerid", this.rangerId)
       .executeUpdate();
     }
   }
