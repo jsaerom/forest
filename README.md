@@ -18,7 +18,7 @@ _This application will allow forest rangers to keep track of animal sightings. I
 
 In PSQL:
 1. CREATE DATABASE wildlife_tracker;
-2. CREATE TABLE animals (id serial PRIMARY KEY, name varchar);
+2. CREATE TABLE animals (id serial PRIMARY KEY, name varchar, endangered boolean, age varchar, health varchar);
 3. CREATE TABLE sightings (id serial PRIMARY KEY, location varchar);
 4. CREATE TABLE rangers (id serial PRIMARY KEY, name varchar, rangernumber varchar, email varchar);
 5. CREATE TABLE rangers_sightings (id serial PRIMARY KEY, sighting_id int, ranger_id int);

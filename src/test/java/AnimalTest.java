@@ -20,4 +20,46 @@ public class AnimalTest {
     Animal testAnimal = new Animal("squirrel");
     assertEquals("squirrel", testAnimal.getName());
   }
+
+  @Test
+  public void equals_returnsTrueIfNameIsSame_true() {
+    Animal firstAnimal = new Animal("squirrel");
+    Animal secondAnimal = new Animal("squirrel");
+    assertTrue(firstAnimal.equals(secondAnimal));
+  }
+
+  @Test
+  public void save_insertsObjectIntoDatabase_Animal() {
+    Animal testAnimal = new Animal("squirrel");
+    testAnimal.save();
+    assertTrue(Animal.all().get(0).equals(testAnimal));
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfAnimal_true() {
+    Animal firstAnimal = new Animal("squirrel");
+    firstAnimal.save();
+    Animal secondAnimal = new Animal("squirrel");
+    secondAnimal.save();
+    assertEquals(true, Animal.all().get(0).equals(firstAnimal));
+    assertEquals(true, Animal.all().get(1).equals(secondAnimal));
+  }
+
+  @Test
+  public void update_updatesName_true() {
+    Animal testAnimal = new Animal("squirrel");
+    testAnimal.save();
+    testAnimal.setName("lion");
+    testAnimal.update();
+    assertEquals("lion", testAnimal.getName());
+  }
+
+  @Test
+  public void find_FindsAnimalInstanceRelatedToId_true() {
+    Animal firstAnimal = new Animal("squirrel");
+    firstAnimal.save();
+    Animal secondAnimal = new Animal("squirrel");
+    secondAnimal.save();
+    assertEquals(secondAnimal, Animal.find(secondAnimal.getId()));
+  }
 }
