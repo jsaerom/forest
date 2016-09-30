@@ -26,4 +26,25 @@ public class EndangeredAnimal extends Animal {
   public String getAge() {
     return this.age;
   }
+
+  public void setHealth(String _health) {
+    this.health = _health;
+  }
+
+  public void setAge(String _age) {
+    this.age = _age;
+  }
+
+  @Override
+  public boolean equals(Object otherEndangeredAnimal) {
+    if (!(otherEndangeredAnimal instanceof EndangeredAnimal)) {
+      return false;
+    } else {
+      EndangeredAnimal newEndangeredAnimal = (EndangeredAnimal) otherEndangeredAnimal;
+      return this.getName().equals(newEndangeredAnimal.getName()) &&
+             this.getHealth().equals(newEndangeredAnimal.getHealth()) &&
+             this.getAge().equals(newEndangeredAnimal.getAge()) &&
+             this.getId() == newEndangeredAnimal.getId();
+    }
+  }
 }

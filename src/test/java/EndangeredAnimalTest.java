@@ -32,4 +32,11 @@ public class EndangeredAnimalTest {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
     assertEquals("Baby", testEndangeredAnimal.getAge());
   }
+
+  @Test
+  public void equals_returnsTrueIfInstanceIsSame_true() {
+    EndangeredAnimal firstAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
+    EndangeredAnimal secondAnimal = new EndangeredAnimal("squirrel", "Healthy", "Baby");
+    assertTrue(firstAnimal.equals(secondAnimal));
+  }
 }
