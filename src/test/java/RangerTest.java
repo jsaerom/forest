@@ -57,4 +57,25 @@ public class RangerTest {
     assertEquals(true, Ranger.all().get(1).equals(secondRanger));
   }
 
+  @Test
+  public void update_updatesRanger_true() {
+    Ranger testRanger = new Ranger("John", "1234", "john@ranger.com");
+    testRanger.save();
+    testRanger.setName("Daniel");
+    testRanger.setRangerNumber("2345");
+    testRanger.setEmail("daniel@ranger.com");
+    testRanger.update();
+    assertEquals("Daniel", testRanger.getName());
+    assertEquals("2345", testRanger.getRangerNumber());
+    assertEquals("daniel@ranger.com", testRanger.getEmail());
+  }
+
+  @Test
+  public void find_FindsRangerInstanceRelatedToId_true() {
+    Ranger firstRanger = new Ranger("John", "1234", "john@ranger.com");
+    firstRanger.save();
+    Ranger secondRanger = new Ranger("John", "1234", "john@ranger.com");
+    secondRanger.save();
+    assertEquals(secondRanger, Ranger.find(secondRanger.getId()));
+  }
 }
