@@ -19,5 +19,8 @@ public class EndangeredAnimal extends Animal {
     this.age = _age;
   }
 
+  public String getHealth() {
+    return this.health;
+  }
 
 }
