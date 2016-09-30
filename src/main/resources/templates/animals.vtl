@@ -1,0 +1,11 @@
+<h2>View Animals</h2>
+#if (!($animals.isEmpty()))
+  <p><a href="">Add new animal</a></p>
+  #foreach ($animal in $animals)
+  <ul>
+    <li><a href="">$animal.getName()</a></li>
+  </ul>
+  #end
+#else
+  <p>There are currently 0 animal. <a href="">Add an animal</a></p>
+#end

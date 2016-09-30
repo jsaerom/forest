@@ -1,0 +1,16 @@
+<h2>$animal.getName()</h2>
+#if ($animal.getEndangered() == true)
+  <p><strong>This animal is an endangered species.</strong></p>
+  <p>$animal.getHealth()</p>
+  <p>$animal.getAge()</p>
+#end
+<hr>
+#if (!($sightings.isEmpty()))
+  #foreach($sighting in $sightings)
+  <ul>
+    <li><a href="">Seen on $sighting.getDate() at $sighting.getLocation()</a></li>
+  </ul>
+  #end
+#else
+  <p>There have been no sightings of this animal</p>
+#end

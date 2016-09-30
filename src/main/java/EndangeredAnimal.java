@@ -29,6 +29,10 @@ public class EndangeredAnimal extends Animal {
     return this.age;
   }
 
+  public String getEndangered() {
+    return this.endangered;
+  }
+
   public void setHealth(String _health) {
     this.health = _health;
   }
