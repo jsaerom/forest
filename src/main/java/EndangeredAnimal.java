@@ -18,4 +18,6 @@ public class EndangeredAnimal extends Animal {
     this.health = _health;
     this.age = _age;
   }
+
+
 }
