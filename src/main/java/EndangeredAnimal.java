@@ -18,6 +18,9 @@ public class EndangeredAnimal extends Animal {
     this.health = _health;
     this.age = _age;
     this.endangered = true;
+    if(health.equals("N/A") || age.equals("N/A")) {
+      throw new UnsupportedOperationException("Please fill out the health condition and age of the animal.");
+    }
   }
 
   public String getHealth() {

@@ -1,9 +1,8 @@
 <form action="/animals" method="post">
   <div class="form-group">
-    <label for="name">Animal Name:</label>
+    <label for="name">Animal Type:</label>
     <input type="text" name="name" id="name" placeholder="E.g. Squirrel">
   </div>
-
   <div class="form-group">
     <label for ="endangered">Is the animal an endangered species?</label>
     <select id="endangered" name="endangered">
@@ -11,28 +10,23 @@
       <option>False</option>
     </select>
   </div>
-
   <div class="form-group">
     <label for ="health">If they're endangered, what is their health like? You may ignore this question if the animal is not an endangered species.</label>
     <select id="health" name="health">
       <option>N/A</option>
-      <option>Healthy</option>
-      <option>Healthy with minor issues</option>
-      <option>Sick</option>
+      <option>$healthy</option>
+      <option>$minorIllness</option>
+      <option>$sick</option>
     </select>
   </div>
-
   <div class="form-group">
     <label for ="age">If they're endangered, what is their estimated age? You may ignore this question if the animal is not an endangered species.</label>
     <select id="age" name="age">
       <option>N/A</option>
-      <option>Baby</option>
-      <option>Youth</option>
-      <option>Old</option>
+      <option>$baby</option>
+      <option>$youth</option>
+      <option>$old</option>
     </select>
   </div>
-
   <button type="submit" class="btn btn-default">Add Animal</button>
-
-
 </form>

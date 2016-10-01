@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Sighting {
   private String location;
@@ -21,8 +22,9 @@ public class Sighting {
     return this.location;
   }
 
-  public Timestamp getDate() {
-    return this.date;
+  public String getDate() {
+    String S = new SimpleDateFormat("MMMM dd, yyyy").format(date);
+    return S;
   }
 
   public int getRangerId() {
@@ -48,7 +50,7 @@ public class Sighting {
     } else {
       Sighting newSighting = (Sighting) otherSighting;
       return this.getLocation().equals(newSighting.getLocation()) &&
-             this.getDate().getDay() == newSighting.getDate().getDay() &&
+             this.getDate().equals(newSighting.getDate()) &&
              this.getRangerId() == newSighting.getRangerId() &&
              this.getId() == newSighting.getId();
     }

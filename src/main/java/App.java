@@ -53,8 +53,12 @@ public class App {
       String health = request.queryParams("health");
       String age = request.queryParams("age");
       if (endangered == true) {
-        EndangeredAnimal animal = new EndangeredAnimal(name, health, age);
-        animal.save();
+        try {
+          EndangeredAnimal animal = new EndangeredAnimal(name, health, age);
+          animal.save();
+        } catch (UnsupportedOperationException exception) {
+          response.redirect("/error");
+        }
       } else {
         Animal animal = new Animal(name);
         animal.save();
@@ -66,8 +70,6 @@ public class App {
     post("/sightings", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String location = request.queryParams("location");
-      // String stringDate = request.queryParams("date");
-      // Date date = Date.valueOf(stringDate);
       int rangerId = Integer.parseInt(request.queryParams("rangerId"));
       int animalId = Integer.parseInt(request.queryParams("animalId"));
       Sighting sighting = new Sighting(location, rangerId);
@@ -84,8 +86,12 @@ public class App {
       String name = request.queryParams("name");
       String rangerNumber = request.queryParams("rangerNumber");
       String email = request.queryParams("email");
+      try {
       Ranger ranger = new Ranger(name, rangerNumber, email);
       ranger.save();
+    } catch (UnsupportedOperationException exception) {
+      response.redirect("/error");
+    }
       model.put("navbar", nav);
       response.redirect("/rangers");
       return new ModelAndView(model, layout);
@@ -94,6 +100,12 @@ public class App {
     get("/animals/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("navbar", nav);
+      model.put("healthy", EndangeredAnimal.HEALTH_HEALTHY);
+      model.put("minorIllness", EndangeredAnimal.HEALTH_MINOR_ILL);
+      model.put("sick", EndangeredAnimal.HEALTH_SICK);
+      model.put("baby", EndangeredAnimal.AGE_BABY);
+      model.put("youth", EndangeredAnimal.AGE_YOUTH);
+      model.put("old", EndangeredAnimal.AGE_OLD);
       model.put("template", "templates/animal-add.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -186,12 +198,9 @@ public class App {
       boolean endangered = Boolean.valueOf(request.queryParams("endangered"));
       String health = request.queryParams("health");
       String age = request.queryParams("age");
-
       animal.setName(name);
-      // animal.setEndangered(endangered);
       animal.setHealth(health);
       animal.setAge(age);
-
       animal.update();
       response.redirect("/animals/" + animalId);
       return new ModelAndView(model, layout);
@@ -199,24 +208,16 @@ public class App {
 
     post("/sightings/:sightingId/edit", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-
       int sightingId = Integer.parseInt(request.params(":sightingId"));
       Sighting sighting = Sighting.find(sightingId);
-
       String location = request.queryParams("location");
-      // String stringDate = request.queryParams("date");
-      // Date date = Date.valueOf(stringDate);
       int rangerId = Integer.parseInt(request.queryParams("rangerId"));
       int animalId = Integer.parseInt(request.queryParams("animalId"));
-
       sighting.setLocation(location);
       sighting.setRangerId(rangerId);
-
       // Animal animal = Animal.find(animalId);
       // animal.addSighting(sighting);
-
       sighting.update();
-
       response.redirect("/sightings/" + sightingId);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -225,11 +226,9 @@ public class App {
       Map<String, Object> model = new HashMap<String, Object>();
       int rangerId = Integer.parseInt(request.params(":rangerId"));
       Ranger ranger = Ranger.find(rangerId);
-
       String name = request.queryParams("name");
       String rangerNumber = request.queryParams("rangerNumber");
       String email = request.queryParams("email");
-
       ranger.setName(name);
       ranger.setRangerNumber(rangerNumber);
       ranger.setEmail(email);
@@ -237,10 +236,6 @@ public class App {
       response.redirect("/rangers/" + rangerId);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-
-
-
-
 
     get("/animals/:animalId/delete", (request, response) ->{
       Map<String, Object> model = new HashMap<String, Object>();
@@ -276,11 +271,6 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
-
-
-
-
     post("/animals/:animalId/delete", (request, response) ->{
       Map<String, Object> model = new HashMap<String, Object>();
       int animalId = Integer.parseInt(request.params(":animalId"));
@@ -311,6 +301,10 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
+    get("/error", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/error.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

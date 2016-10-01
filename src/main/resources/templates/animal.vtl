@@ -1,17 +1,17 @@
-<h2>$animal.getName()</h2>
+<h2>Type: $animal.getName()</h2>
+<p><a href="/animals/$animal.getId()/edit">Edit</a>|<a href="/animals/$animal.getId()/delete">Delete</a></p>
 #if ($animal.getEndangered())
   <p><strong>This animal is an endangered species.</strong></p>
-  <p>$animal.getHealth()</p>
-  <p>$animal.getAge()</p>
+  <p>Animal's health condition: $animal.getHealth()</p>
+  <p>Animal's approximate age: $animal.getAge()</p>
 #end
 <hr>
 #if (!($sightings.isEmpty()))
   #foreach($sighting in $sightings)
   <ul>
-    <li><a href="">Seen on $sighting.getDate() at $sighting.getLocation()</a></li>
+    <li><a href="/sightings/$sighting.getId()">Seen on $sighting.getDate() at $sighting.getLocation()</a></li>
   </ul>
   #end
 #else
   <p>There have been no sightings of this animal</p>
 #end
-<p><a href="/animals/$animal.getId()/edit">Edit</a>|<a href="/animals/$animal.getId()/delete">Delete</a></p>

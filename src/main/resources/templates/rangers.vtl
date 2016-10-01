@@ -1,11 +1,11 @@
 <h2>View Rangers</h2>
 #if (!($rangers.isEmpty()))
-  <p><a href="/rangers/new">Add new ranger</a></p>
+  <p><a href="/rangers/new">Add New Ranger</a></p>
   #foreach ($ranger in $rangers)
   <ul>
     <li><a href="/rangers/$ranger.getId()">$ranger.getName()</a></li>
   </ul>
   #end
 #else
-  <p>There are currently 0 ranger. <a href="/rangers/new">Add a ranger</a></p>
+  <p>There are currently 0 ranger. <a href="/rangers/new">Add A Ranger</a></p>
 #end

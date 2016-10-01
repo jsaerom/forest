@@ -1,15 +1,9 @@
 <form action="/sightings" method="post">
   <div class="form-group">
     <img src="http://www.plicmapcenter.org/images/CA_BLM_SouthDeer_PLIA.gif">
-    <label for="location">Location:</label>
+    <label for="location">Based on the map above, where was the sighting?</label>
     <input type="text" name="location" id="location">
   </div>
-
-  <!-- <div class="form-group">
-    <label for="date"></label>
-    <input type="date" name="date" id="date">
-  </div> -->
-
   <div class = "form-group">
     <label for = "rangerId">Ranger Name:</label>
     <select id = "rangerId" name = "rangerId" text = "text">
@@ -19,7 +13,6 @@
       #end
     </select>
   </div>
-
   <div class = "form-group">
       <label for = "animalId">Animal:</label>
       <select id = "animalId" name = "animalId" text = "text">
@@ -28,8 +21,5 @@
         #end
       </select>
     </div>
-
   <button type="submit" class="btn btn-default">Add Animal</button>
-
-
 </form>

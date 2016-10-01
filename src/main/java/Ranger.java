@@ -12,6 +12,9 @@ public class Ranger {
     this.name = _name;
     this.rangerNumber = _rangerNumber;
     this.email = _email;
+    if(email.length() == 0 || rangerNumber.length() == 0 || name.length() == 0){
+      throw new UnsupportedOperationException("Please fill out your whole information");
+    }
   }
 
   public String getName() {
