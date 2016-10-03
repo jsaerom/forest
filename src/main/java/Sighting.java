@@ -31,6 +31,26 @@ public class Sighting {
     return this.rangerId;
   }
 
+  public List<EndangeredAnimal> getAnimals() {
+    try(Connection con = DB.sql2o.open()) {
+      String joinQuery = "SELECT sighting_id FROM animals_sightings WHERE sighting_id = :sighting_id;";
+      List<Integer> animalIds = con.createQuery(joinQuery)
+        .addParameter("sighting_id", this.getId())
+        .executeAndFetch(Integer.class);
+
+      List<EndangeredAnimal> animals = new ArrayList<EndangeredAnimal>();
+
+      for (Integer animalId : animalIds) {
+        String animalQuery = "SELECT * FROM animals WHERE id = :animalId;";
+        EndangeredAnimal animal = con.createQuery(animalQuery)
+          .addParameter("animalId", animalId)
+          .executeAndFetchFirst(EndangeredAnimal.class);
+        animals.add(animal);
+      }
+      return animals;
+    }
+  }
+
   public int getId() {
     return this.id;
   }

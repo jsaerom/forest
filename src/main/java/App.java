@@ -144,6 +144,7 @@ public class App {
       model.put("navbar", nav);
       model.put("template", "templates/sighting.vtl");
       model.put("sighting", sighting);
+      model.put("animals", sighting.getAnimals());
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
